@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Driver {
+public class DuplicateDetective {
     static Scanner IN = new Scanner(System.in);
 
     public static void main(String[] args) {

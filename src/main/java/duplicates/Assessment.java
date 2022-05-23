@@ -126,7 +126,7 @@ public class Assessment {
                     System.out.println("-- VERSION 2 --");
                     System.out.println(questions.get(j));
                     System.out.printf("There is a %%%5.2f similarity. Are they duplicates? (y<optional: number>/n) \n", similarity * 100);
-                    String answer = Driver.IN.nextLine();
+                    String answer = DuplicateDetective.IN.nextLine();
                     boolean isDuplicate = answer.charAt(0) == 'y';
                     if (isDuplicate) {
                         // User has the option of choosing which to delete if there is a duplicate, and the number will come after y.
