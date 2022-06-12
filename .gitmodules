@@ -1,0 +1,3 @@
+[submodule "linkedin-skill-assessments-quizzes"]
+	path = linkedin-skill-assessments-quizzes
+	url = https://github.com/spencerstith/linkedin-skill-assessments-quizzes.git
