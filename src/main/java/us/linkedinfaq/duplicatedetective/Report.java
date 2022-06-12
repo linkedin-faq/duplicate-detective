@@ -34,7 +34,7 @@ public class Report {
 
     private Report() {
         try {
-            writer = new BufferedWriter(new FileWriter("src/main/reports/" + LocalDate.now() + "-report.txt"));
+            writer = new BufferedWriter(new FileWriter("reports/" + LocalDate.now() + "-report.txt"));
             writer.write(decoration);
             writer.write(String.format("| %-73s | %10s | %10s |\n", "File", "Duplicates", "Renumbered"));
             writer.write(decoration);

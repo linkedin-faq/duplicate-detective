@@ -14,6 +14,7 @@ public class DuplicateDetective {
             assessment.writeFile();
         }
         Report.getInstance().finish();
+        UniqueQuestionManager.writeUniques();
     }
 
     /**
