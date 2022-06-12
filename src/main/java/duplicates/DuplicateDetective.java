@@ -1,5 +1,6 @@
 package duplicates;
 
+import java.awt.color.ICC_Profile;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,30 +19,41 @@ public class DuplicateDetective {
 
     /**
      * Loads all quiz files and sends them to their own {@link Assessment} class.
+     * The directory of this project is as follows:
+     * <pre>
+     *     duplicate-detective (root)
+     *     |- linkedin-skill-assessments-quizzes
+     *        |- [quiz directory]
+     *           |- [quiz MD file(s)]
+     *     |- src
+     *        |- ...
+     * </pre>
      *
      * @return Quiz files represented by {@link Assessment} objects
      */
     static ArrayList<Assessment> loadAssessments() {
         ArrayList<Assessment> assessments = new ArrayList<>();
-        // The search begins in the root directory, which contains a lot of directories, which then contain the quiz markdown files.
-        File[] directories = new File("./").listFiles();
-        if (directories != null) {
-            for (File dir : directories) {
-                if (dir.isDirectory()) {
-                    File[] quizzes = dir.listFiles();
-                    if (quizzes != null) {
-                        for (File file : quizzes) {
-                            if (file.getName().endsWith(".md")) {
-                                assessments.add(new Assessment(file));
-                            }
+        // linkedin-skill-assessments-quizzes
+        File[] directories = new File("linkedin-skill-assessments-quizzes").listFiles();
+        if (directories == null) {
+            System.err.println("Could not find assessments directory! Make sure git submodule is configured in root directory of this project.");
+            System.exit(1);
+        }
+        // [quiz directory]
+        for (File quizDirectory : directories) {    // 2
+            if (quizDirectory.isDirectory()) {
+                File[] quizzes = quizDirectory.listFiles();
+                if (quizzes != null) {
+                    // [quiz MD file(s)]
+                    for (File quiz : quizzes) {
+                        if (quiz.getName().endsWith(".md")) {
+                            assessments.add(new Assessment(quiz));
                         }
-                    } else {
-                        System.out.println("Could not find any files to examine in directory " + dir.getName() + "!");
                     }
+                } else {
+                    System.out.println("Skipping " + quizDirectory.getName() + " - No quizzes found within.");
                 }
             }
-        } else {
-            System.out.println("Could not find any directories to examine!");
         }
         return assessments;
     }

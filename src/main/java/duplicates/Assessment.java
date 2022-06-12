@@ -11,9 +11,9 @@ public class Assessment {
 
     private File file;
     private ArrayList<Question> questions;
-    String heading, subheading;
-    ArrayList<Question> dupQuestions;
-    int dupCount, renumCount;
+    private String heading, subheading;
+    private ArrayList<Question> dupQuestions;
+    private int dupCount, renumCount;
 
     Assessment(File file) {
         this.file = file;
@@ -22,6 +22,18 @@ public class Assessment {
         for (ArrayList<String> block : blocks) {
             questions.add(parseBlock(block));
         }
+    }
+
+    String getHeading() {
+        return heading;
+    }
+
+    int getDupCount() {
+        return dupCount;
+    }
+
+    int getRenumCount() {
+        return renumCount;
     }
 
     /**
@@ -94,7 +106,7 @@ public class Assessment {
         first = first.substring(dot + 2);
         // Gather the rest of the prompt, which is every line up to the first answer.
         StringBuilder prompt = new StringBuilder(first);
-        while (!block.get(0).startsWith("- [")) {
+        while (!block.get(0).startsWith("- [") && !block.get(0).startsWith("-[")) {
             prompt.append("\n").append(block.remove(0));
         }
         // The rest of the array now just contains the answers.

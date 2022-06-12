@@ -3,6 +3,7 @@ package duplicates;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  * Report generates a report including how many duplicates were removed and how many questions were renumbered
@@ -33,7 +34,7 @@ public class Report {
 
     private Report() {
         try {
-            writer = new BufferedWriter(new FileWriter("./DuplicateDetective/src/main/reports/report.txt"));
+            writer = new BufferedWriter(new FileWriter("src/main/reports/" + LocalDate.now() + "-report.txt"));
             writer.write(decoration);
             writer.write(String.format("| %-73s | %10s | %10s |\n", "File", "Duplicates", "Renumbered"));
             writer.write(decoration);
@@ -52,10 +53,10 @@ public class Report {
      */
     void add(Assessment a) {
         try {
-            writer.write(String.format("| %-73s | %10d | %10d |\n", a.heading, a.dupCount, a.renumCount));
+            writer.write(String.format("| %-73s | %10d | %10d |\n", a.getHeading(), a.getDupCount(), a.getRenumCount()));
             writer.flush();
-            duplicates += a.dupCount;
-            renumbered += a.renumCount;
+            duplicates += a.getDupCount();
+            renumbered += a.getRenumCount();
         } catch (IOException e) {
             e.printStackTrace();
         }
