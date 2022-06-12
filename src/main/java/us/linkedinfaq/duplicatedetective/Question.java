@@ -1,4 +1,4 @@
-package duplicates;
+package us.linkedinfaq.duplicatedetective;
 
 public record Question(int number, String prompt, String answer) {
     public String toString() {

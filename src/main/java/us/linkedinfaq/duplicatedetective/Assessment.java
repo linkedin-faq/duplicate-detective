@@ -1,4 +1,4 @@
-package duplicates;
+package us.linkedinfaq.duplicatedetective;
 
 import java.io.*;
 import java.util.ArrayList;

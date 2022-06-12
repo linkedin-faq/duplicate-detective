@@ -1,6 +1,5 @@
-package duplicates;
+package us.linkedinfaq.duplicatedetective;
 
-import java.awt.color.ICC_Profile;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;

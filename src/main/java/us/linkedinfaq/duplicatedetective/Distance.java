@@ -1,4 +1,4 @@
-package duplicates;
+package us.linkedinfaq.duplicatedetective;
 
 /**
  * The Distance class is a utility class that determines how similar two prompts are.
